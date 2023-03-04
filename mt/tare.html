@@ -72,14 +72,15 @@
             return;
         }
         localStorage.setItem('pt', weight_val);
-        p = window.location.pathname
+        p = window.location.href
         base_path = p.substring(0,p.lastIndexOf("/")+1);
-        location.href = base_path + '/index.html'
+        location.href = base_path + 'index.html'
+    }
+    function load() {
+        document.getElementById("errorStatus").innerText = ''
     }
 </script>
-
-
-<body>
+<body onload="load()">
     <div>
         <table>
             <tr>
