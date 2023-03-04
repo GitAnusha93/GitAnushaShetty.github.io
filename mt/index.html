@@ -36,7 +36,9 @@
             statusMsg.innerHTML = pt + ' kg'
         }
         function navigate() {
-            location.href = 'mt/tare.html';
+            p = window.location.pathname
+            base_path = p.substring(0,p.lastIndexOf("/")+1);
+            location.href = base_path + '/tare.html';
         }
     </script>
 </head>
