@@ -1,97 +1,61 @@
+<!DOCTYPE html>
 <html>
-<style>
-    .buttonstyle {
-        background-image: linear-gradient(rgb(244, 244, 244), rgb(212, 211, 211));
-        border: 0.1px solid rgb(120, 120, 120);
-        height: 50px;
-        width: 40px;
-        font-size: 24px;
-    }
 
-    .headerBlock {
-        height: 13px;
-        font-size: small;
-        background-image: linear-gradient(rgb(191, 234, 252), rgb(113, 203, 250));
-        height: 30px;
-        font-weight: bold;
-    }
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>MT project</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        .buttonstyle {
+            background-image: linear-gradient(rgb(242, 241, 245), rgb(225, 222, 233));
+            border: 0.1px solid rgb(171, 174, 178);
+            height: 50px;
+            width: 40px;
+            font-size: 24px;
+        }
 
-    .backButton {
-        background: none;
-        border: none;
-        width: 100%;
-        height: 100%;
-        font-weight: bold;
-    }
+        #preset {
+            width: 60px;
+        }
 
-    #btnSubmit {
-        height: 105px;
-    }
+        #tareStatus {
+            font-size: 26px;
+            font-weight: bolder;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function load() {
+            pt = localStorage.getItem('pt');
+            statusMsg = document.getElementById("tareStatus")
+            if (pt == null) {
+                statusMsg.innerHTML = ''
+                return;
+            }
+            statusMsg.innerHTML = pt + ' kg'
+        }
+        function navigate() {
+            location.href = './index.html';
+        }
+    </script>
+</head>
 
-    #tbInput {
-        width: 170px;
-        border: 1px solid rgb(113, 203, 250);
-        text-align: right;
-        font-size: 24px;
-        height: 50px;
-    }
-
-    table {
-        background-color: rgb(243, 242, 246);
-    }
-</style>
-<script>
-    function input(e) {
-        var tbInput = document.getElementById("tbInput")
-        tbInput.value = tbInput.value + e.value;
-    }
-    function del() {
-        var tbInput = document.getElementById("tbInput");
-        tbInput.value = tbInput.value.substr(0, tbInput.value.length - 1);
-    }
-</script>
-
-
-<body>
-    <div>
-        <table>
-            <tr>
-                <td class="headerBlock">
-                    <input class="backButton" type="button" value="&lt;" />
-                </td>
-                <td class="headerBlock" colspan="3" style="padding-left: 10px;">Preset Tare (kg)</td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <input id="tbInput" type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td><input class="buttonstyle" id="btn7" type="button" value="7" onclick="input(this);" /></td>
-                <td><input class="buttonstyle" id="btn8" type="button" value="8" onclick="input(this);" /></td>
-                <td><input class="buttonstyle" id="btn9" type="button" value="9" onclick="input(this);" /></td>
-                <td><input class="buttonstyle" id="btnDel" type="button" value="&#171;" onclick="del();" /> </td>
-            </tr>
-            <tr>
-                <td><input class="buttonstyle" id="btn4" type="button" value="4" onclick="input(this);" /></td>
-                <td><input class="buttonstyle" id="btn5" type="button" value="5" onclick="input(this);" /></td>
-                <td><input class="buttonstyle" id="btn6" type="button" value="6" onclick="input(this);" /></td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td><input class="buttonstyle" id="btn1" type="button" value="1" onclick="input(this);" /></td>
-                <td><input class="buttonstyle" id="btn2" type="button" value="2" onclick="input(this);" /></td>
-                <td><input class="buttonstyle" id="btn3" type="button" value="3" onclick="input(this);" /></td>
-                <td rowspan="2">
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td><input class="buttonstyle" id="btn0" type="button" value="0" onclick="input(this);" /></td>
-                <td><input class="buttonstyle" id="btnDot" type="button" value="." onclick="input(this);" /></td>
-            </tr>
-
-        </table>
-    </div>
+<body onload="load()">
+    <table>
+        <tr>
+            <td>
+            <td><input class="buttonstyle" id="preset" type="button" value="PT" onclick="navigate();" /></td>
+            </td>
+            <td>
+            <td>
+                <div id="tareStatus">
+                    0 kg
+                </div>
+            </td>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>

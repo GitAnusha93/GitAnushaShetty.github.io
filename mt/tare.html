@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>MT project</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        .buttonstyle {
+            background-image: linear-gradient(rgb(242, 241, 245), rgb(225, 222, 233));
+            border: 0.1px solid rgb(171, 174, 178);
+            height: 50px;
+            width: 40px;
+            font-size: 24px;
+        }
+
+        .headerBlock {
+            height: 13px;
+            font-size: small;
+            background-image: linear-gradient(rgb(191, 234, 252), rgb(113, 203, 250));
+            height: 30px;
+            font-weight: bold;
+        }
+
+        .backButton {
+            background: none;
+            border: none;
+            width: 100%;
+            height: 100%;
+            font-weight: bold;
+        }
+
+        #btnSubmit {
+            height: 105px;
+        }
+
+        #tbInput {
+            width: 170px;
+            border: 1px solid rgb(113, 203, 250);
+            text-align: right;
+            font-size: 24px;
+            height: 50px;
+        }
+
+        #errorStatus {
+            word-break: break-all;
+            white-space: normal;
+        }
+
+        table {
+            background-color: rgb(243, 242, 246);
+        }
+    </style>
+</head>
+
+<script>
+    function input(e) {
+        var tbInput = document.getElementById("tbInput")
+        tbInput.value = tbInput.value + e.value;
+    }
+    function del() {
+        var tbInput = document.getElementById("tbInput");
+        tbInput.value = tbInput.value.substr(0, tbInput.value.length - 1);
+    }
+    function validate() {
+        var tbInput = document.getElementById("tbInput");
+        weight_val = parseFloat(tbInput.value);
+        if (isNaN(weight_val) || weight_val <= 0) {
+            errMsg = document.getElementById("errorStatus")
+            errMsg.innerText = "Tare Failed, status = {Invalid Data}"
+            return;
+        }
+        localStorage.setItem('pt', weight_val);
+        location.href = './home.html'
+    }
+</script>
+
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <td class="headerBlock">
+                    <input class="backButton" type="button" value="&lt;" onclick="history.back()" />
+                </td>
+                <td class="headerBlock" colspan="3" style="padding-left: 10px;">Preset Tare (kg)</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input id="tbInput" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td><input class="buttonstyle" type="button" value="7" onclick="input(this);" /></td>
+                <td><input class="buttonstyle" type="button" value="8" onclick="input(this);" /></td>
+                <td><input class="buttonstyle" type="button" value="9" onclick="input(this);" /></td>
+                <td><input class="buttonstyle" id="btnDel" type="button" value="&#171;" onclick="del();" /> </td>
+            </tr>
+            <tr>
+                <td><input class="buttonstyle" type="button" value="4" onclick="input(this);" /></td>
+                <td><input class="buttonstyle" type="button" value="5" onclick="input(this);" /></td>
+                <td><input class="buttonstyle" type="button" value="6" onclick="input(this);" /></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td><input class="buttonstyle" type="button" value="1" onclick="input(this);" /></td>
+                <td><input class="buttonstyle" type="button" value="2" onclick="input(this);" /></td>
+                <td><input class="buttonstyle" type="button" value="3" onclick="input(this);" /></td>
+                <td rowspan="2">
+                    <input class="buttonstyle" id="btnSubmit" type="button" value="✓" onclick="validate();" />
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input class="buttonstyle" type="button" value="0" onclick="input(this);" /></td>
+                <td><input class="buttonstyle" id="btnDot" type="button" value="." onclick="input(this);" /></td>
+            </tr>
+        </table>
+        <p id="errorStatus"> </p>
+    </div>
+</body>
+
+</html>
